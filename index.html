@@ -15,13 +15,13 @@ body{font-family:'Inter',sans-serif;background:#EDEDEA;color:var(--preto);font-s
 .arc2{position:absolute;bottom:-100px;left:160px;width:260px;height:260px;border-radius:50%;background:var(--azul);opacity:.08;pointer-events:none}
 .htop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;position:relative;z-index:1}
 .logo img{height:38px;filter:brightness(0) invert(1)}
-.badge{background:var(--lima);color:var(--preto);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px}
+.badge{background:var(--lima);color:var(--preto);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px;white-space:nowrap}
 .htitle{font-family:'Sora',sans-serif;font-size:30px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:8px;position:relative;z-index:1}
 .htitle span{color:var(--lima)}
 .hsub{color:rgba(255,255,255,.5);font-size:13px;margin-bottom:24px;position:relative;z-index:1}
 .limaline{width:44px;height:3px;background:var(--lima);margin-bottom:20px;position:relative;z-index:1}
-.metarow{display:flex;gap:0;position:relative;z-index:1}
-.metaitem{display:flex;flex-direction:column;gap:2px;padding-right:40px}
+.metarow{display:flex;flex-wrap:wrap;gap:16px;position:relative;z-index:1}
+.metaitem{display:flex;flex-direction:column;gap:2px}
 .mlbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35)}
 .mval{font-size:12px;color:rgba(255,255,255,.8)}
 .body{padding:52px 60px}
@@ -46,7 +46,7 @@ body{font-family:'Inter',sans-serif;background:#EDEDEA;color:var(--preto);font-s
 .ititle{font-size:12px;font-weight:600;color:var(--preto);margin-bottom:4px}
 .ibody{font-size:12px;color:#555;line-height:1.6}
 .ibody b{color:var(--preto)}
-.twrap{border-radius:10px;overflow:hidden;border:.5px solid var(--cinza-m);margin-bottom:32px}
+.twrap{border-radius:10px;overflow-x:auto;border:.5px solid var(--cinza-m);margin-bottom:32px}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{background:var(--preto)}
 thead th{color:#fff;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:11px 14px;text-align:left}
@@ -58,7 +58,7 @@ tbody tr:last-child td{border-bottom:none}
 .tmatch{display:inline-block;background:var(--green-l);color:var(--green-d);font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:10px}
 .textra{display:inline-block;background:var(--orange-l);color:var(--orange-d);font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:10px}
 .cbox{background:var(--cinza-l);border-radius:12px;padding:24px 24px 16px;margin-bottom:16px}
-.chead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.chead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .ctitle{font-size:13px;font-weight:600;color:var(--preto)}
 .csub{font-size:11px;color:var(--cinza-t);margin-top:2px}
 .legend{display:flex;gap:14px;flex-wrap:wrap}
@@ -89,10 +89,68 @@ tbody tr:last-child td{border-bottom:none}
 .flbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--lima);margin-bottom:12px}
 .ftxt{font-size:14px;color:rgba(255,255,255,.82);line-height:1.75}
 .footer-bar{height:2px;background:var(--lima)}
-.footer{background:var(--preto);padding:20px 60px;display:flex;justify-content:space-between;align-items:center}
+.footer{background:var(--preto);padding:20px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .fl{display:flex;align-items:center;gap:10px}
 .fl img{height:22px;filter:brightness(0) invert(1);opacity:.5}
 .fr{font-size:11px;color:rgba(255,255,255,.35);font-style:italic}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:640px){
+  .page{margin:0;border-radius:0}
+  .header{padding:28px 20px 28px}
+  .htop{margin-bottom:20px}
+  .logo img{height:28px}
+  .badge{font-size:9px;padding:4px 10px}
+  .htitle{font-size:22px}
+  .hsub{font-size:12px;margin-bottom:18px}
+  .metarow{gap:12px}
+  .metaitem{padding-right:0}
+  .body{padding:28px 20px}
+  .stitle{font-size:17px}
+  .sdesc{font-size:13px}
+  .divider{margin:32px 0}
+
+  /* KPIs: 1 coluna em telas muito pequenas */
+  .kgrid{grid-template-columns:1fr;gap:10px}
+  .knum{font-size:30px}
+
+  /* Gráficos: altura reduzida, scroll nas tabelas internas */
+  .cbox{padding:16px 14px 12px}
+  .chead{flex-direction:column;gap:8px}
+
+  /* Cards de estado: empilhados */
+  .sgrid{grid-template-columns:1fr}
+
+  /* Stats do card: 3 colunas se couber, ou quebra */
+  .sstats{grid-template-columns:1fr 1fr 1fr}
+  .sstat{padding:10px 8px}
+  .sslbl{font-size:9px}
+  .ssval{font-size:16px}
+
+  /* Tabelas internas com scroll horizontal */
+  .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .scard{overflow:hidden}
+  .scard .st{min-width:320px}
+  .scard>div:last-child{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Tabela resumo */
+  .twrap table{min-width:400px}
+
+  .fbox{padding:22px 16px}
+  .ftxt{font-size:13px}
+
+  .footer{padding:16px 20px;flex-direction:column;align-items:flex-start;gap:8px}
+  .fl img{height:18px}
+}
+
+@media(min-width:641px) and (max-width:820px){
+  .page{margin:16px auto}
+  .header{padding:36px 36px 32px}
+  .body{padding:40px 36px}
+  .kgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .footer{padding:18px 36px}
+}
 </style>
 </head>
 <body>
@@ -159,12 +217,12 @@ tbody tr:last-child td{border-bottom:none}
         <span class="li-item"><span class="li-dot" style="background:#DED138"></span>Questões técnicas</span>
       </div>
     </div>
-    <div style="position:relative;width:100%;height:260px"><canvas id="c1" role="img" aria-label="Distribuição por estado">Ceará: 306 matches, 48 extras, 21 técnicas. Piauí: 401 matches, 8 extras, 59 técnicas.</canvas></div>
+    <div style="position:relative;width:100%;height:240px"><canvas id="c1" role="img" aria-label="Distribuição por estado">Ceará: 306 matches, 48 extras, 21 técnicas. Piauí: 401 matches, 8 extras, 59 técnicas.</canvas></div>
   </div>
 
   <div class="cbox">
     <div class="chead"><div><div class="ctitle">Taxa de acurácia por estado</div><div class="csub">% de veiculações do cliente confirmadas pela Tunad</div></div></div>
-    <div style="position:relative;width:100%;height:120px"><canvas id="c2" role="img" aria-label="Acurácia por estado">Ceará 93,6%. Piauí 87,2%.</canvas></div>
+    <div style="position:relative;width:100%;height:110px"><canvas id="c2" role="img" aria-label="Acurácia por estado">Ceará 93,6%. Piauí 87,2%.</canvas></div>
   </div>
 
   <hr class="divider">
@@ -181,7 +239,7 @@ tbody tr:last-child td{border-bottom:none}
         <span class="li-item"><span class="li-dot" style="background:#A1529A"></span>Piauí</span>
       </div>
     </div>
-    <div style="position:relative;width:100%;height:280px"><canvas id="c3" role="img" aria-label="Acurácia por emissora">Somzoom Sat 85,4%. Vale Jaguaribe 97,3%. 7 Cidades 56,6%. Castelo 94,2%. Meio Norte 93,4%.</canvas></div>
+    <div style="position:relative;width:100%;height:260px"><canvas id="c3" role="img" aria-label="Acurácia por emissora">Somzoom Sat 85,4%. Vale Jaguaribe 97,3%. 7 Cidades 56,6%. Castelo 94,2%. Meio Norte 93,4%.</canvas></div>
   </div>
 
   <hr class="divider">
@@ -197,17 +255,19 @@ tbody tr:last-child td{border-bottom:none}
         <div class="sacc" style="color:var(--laranja)">93,6%</div>
       </div>
       <div class="sstats">
-        <div class="sstat"><div class="sslbl">Identificações em comum</div><div class="ssval">306</div><div class="sssub">de 327 do cliente</div></div>
-        <div class="sstat"><div class="sslbl">Extras (só Tunad)</div><div class="ssval" style="color:var(--laranja)">+48</div><div class="sssub">&nbsp;</div></div>
-        <div class="sstat"><div class="sslbl">Não encontradas por questões técnicas</div><div class="ssval" style="color:var(--cinza-t)">21</div><div class="sssub">&nbsp;</div></div>
+        <div class="sstat"><div class="sslbl">Em comum</div><div class="ssval">306</div><div class="sssub">de 327</div></div>
+        <div class="sstat"><div class="sslbl">Só Tunad</div><div class="ssval" style="color:var(--laranja)">+48</div><div class="sssub">&nbsp;</div></div>
+        <div class="sstat"><div class="sslbl">Técnicas</div><div class="ssval" style="color:var(--cinza-t)">21</div><div class="sssub">&nbsp;</div></div>
       </div>
-      <table class="st">
-        <thead><tr><th>Emissora</th><th>Match</th><th>Extra</th><th>Técnicas</th><th>Acurácia</th></tr></thead>
-        <tbody>
-          <tr><td>Somzoom Sat FM 98.5</td><td>88</td><td style="color:var(--laranja)">+22</td><td>15</td><td><strong>85,4%</strong></td></tr>
-          <tr><td>Vale do Jaguaribe FM 103.3</td><td>218</td><td style="color:var(--laranja)">+26</td><td>6</td><td><strong>97,3%</strong></td></tr>
-        </tbody>
-      </table>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+        <table class="st" style="min-width:300px">
+          <thead><tr><th>Emissora</th><th>Match</th><th>Extra</th><th>Téc.</th><th>Acurácia</th></tr></thead>
+          <tbody>
+            <tr><td>Somzoom Sat FM 98.5</td><td>88</td><td style="color:var(--laranja)">+22</td><td>15</td><td><strong>85,4%</strong></td></tr>
+            <tr><td>Vale do Jaguaribe FM 103.3</td><td>218</td><td style="color:var(--laranja)">+26</td><td>6</td><td><strong>97,3%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="scard">
       <div class="shead ro">
@@ -215,24 +275,26 @@ tbody tr:last-child td{border-bottom:none}
         <div class="sacc" style="color:var(--roxo)">87,2%</div>
       </div>
       <div class="sstats">
-        <div class="sstat"><div class="sslbl">Identificações em comum</div><div class="ssval">401</div><div class="sssub">de 460 do cliente</div></div>
-        <div class="sstat"><div class="sslbl">Extras (só Tunad)</div><div class="ssval" style="color:var(--roxo)">+8</div><div class="sssub">&nbsp;</div></div>
-        <div class="sstat"><div class="sslbl">Não encontradas por questões técnicas</div><div class="ssval" style="color:var(--cinza-t)">59</div><div class="sssub">&nbsp;</div></div>
+        <div class="sstat"><div class="sslbl">Em comum</div><div class="ssval">401</div><div class="sssub">de 460</div></div>
+        <div class="sstat"><div class="sslbl">Só Tunad</div><div class="ssval" style="color:var(--roxo)">+8</div><div class="sssub">&nbsp;</div></div>
+        <div class="sstat"><div class="sslbl">Técnicas</div><div class="ssval" style="color:var(--cinza-t)">59</div><div class="sssub">&nbsp;</div></div>
       </div>
-      <table class="st">
-        <thead><tr><th>Emissora</th><th>Match</th><th>Extra</th><th>Técnicas</th><th>Acurácia</th></tr></thead>
-        <tbody>
-          <tr><td>7 Cidades FM 93.9</td><td>47</td><td style="color:var(--roxo)">+1</td><td>36</td><td><strong>56,6%</strong></td></tr>
-          <tr><td>Castelo FM 103.5</td><td>213</td><td style="color:var(--roxo)">+2</td><td>13</td><td><strong>94,2%</strong></td></tr>
-          <tr><td>Meio Norte FM 97.1</td><td>141</td><td style="color:var(--roxo)">+5</td><td>10</td><td><strong>93,4%</strong></td></tr>
-        </tbody>
-      </table>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+        <table class="st" style="min-width:300px">
+          <thead><tr><th>Emissora</th><th>Match</th><th>Extra</th><th>Téc.</th><th>Acurácia</th></tr></thead>
+          <tbody>
+            <tr><td>7 Cidades FM 93.9</td><td>47</td><td style="color:var(--roxo)">+1</td><td>36</td><td><strong>56,6%</strong></td></tr>
+            <tr><td>Castelo FM 103.5</td><td>213</td><td style="color:var(--roxo)">+2</td><td>13</td><td><strong>94,2%</strong></td></tr>
+            <tr><td>Meio Norte FM 97.1</td><td>141</td><td style="color:var(--roxo)">+5</td><td>10</td><td><strong>93,4%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <div class="stag">Resumo geral</div>
   <div class="twrap" style="margin-top:10px">
-    <table><thead><tr><th>Estado</th><th>Total</th><th>Matches</th><th>Extras Tunad</th><th>Acurácia</th></tr></thead>
+    <table><thead><tr><th>Estado</th><th>Total</th><th>Matches</th><th>Extras</th><th>Acurácia</th></tr></thead>
     <tbody>
       <tr><td>Ceará</td><td>375</td><td><span class="tmatch">306 — 93,6%</span></td><td><span class="textra">+48</span></td><td><strong>93,6%</strong></td></tr>
       <tr><td>Piauí</td><td>468</td><td><span class="tmatch">401 — 87,2%</span></td><td><span class="textra">+8</span></td><td><strong>87,2%</strong></td></tr>
@@ -269,9 +331,10 @@ tbody tr:last-child td{border-bottom:none}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const AZ='#67BBB8',LA='#F8773B',LI='#DED138',RO='#A1529A',PR='#191D23',CZ='#E8E8E5';
-new Chart(document.getElementById('c1'),{type:'bar',data:{labels:['Ceará','Piauí'],datasets:[{label:'Mesmo resultado',data:[306,401],backgroundColor:AZ,borderRadius:4,borderSkipped:false},{label:'Só Tunad (extras)',data:[48,8],backgroundColor:LA,borderRadius:4,borderSkipped:false},{label:'Questões técnicas',data:[21,59],backgroundColor:LI,borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.raw}`}}},scales:{x:{grid:{display:false},ticks:{font:{size:13},color:PR}},y:{grid:{color:CZ},ticks:{font:{size:11},color:'#888'}}}}});
-new Chart(document.getElementById('c2'),{type:'bar',data:{labels:['Ceará','Piauí'],datasets:[{label:'Acurácia',data:[93.6,87.2],backgroundColor:[LA,RO],borderRadius:6,borderSkipped:false,barThickness:32}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(1)}%`}}},scales:{x:{min:0,max:105,grid:{color:CZ},ticks:{font:{size:11},color:'#888',callback:v=>v+'%'}},y:{grid:{display:false},ticks:{font:{size:13},color:PR}}}}});
-new Chart(document.getElementById('c3'),{type:'bar',data:{labels:['Somzoom Sat FM 98.5','Vale do Jaguaribe FM 103.3','7 Cidades FM 93.9','Castelo FM 103.5','Meio Norte FM 97.1'],datasets:[{label:'Acurácia',data:[85.4,97.3,56.6,94.2,93.4],backgroundColor:[LA,LA,RO,RO,RO],borderRadius:5,borderSkipped:false,barThickness:28}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(1)}%`}}},scales:{x:{min:0,max:112,grid:{color:CZ},ticks:{font:{size:11},color:'#888',callback:v=>v+'%'}},y:{grid:{display:false},ticks:{font:{size:11},color:PR}}}}});
+const isMobile = window.innerWidth <= 640;
+new Chart(document.getElementById('c1'),{type:'bar',data:{labels:['Ceará','Piauí'],datasets:[{label:'Mesmo resultado',data:[306,401],backgroundColor:AZ,borderRadius:4,borderSkipped:false},{label:'Só Tunad (extras)',data:[48,8],backgroundColor:LA,borderRadius:4,borderSkipped:false},{label:'Questões técnicas',data:[21,59],backgroundColor:LI,borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.raw}`}}},scales:{x:{grid:{display:false},ticks:{font:{size:isMobile?11:13},color:PR}},y:{grid:{color:CZ},ticks:{font:{size:10},color:'#888'}}}}});
+new Chart(document.getElementById('c2'),{type:'bar',data:{labels:['Ceará','Piauí'],datasets:[{label:'Acurácia',data:[93.6,87.2],backgroundColor:[LA,RO],borderRadius:6,borderSkipped:false,barThickness:isMobile?22:32}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(1)}%`}}},scales:{x:{min:0,max:105,grid:{color:CZ},ticks:{font:{size:10},color:'#888',callback:v=>v+'%'}},y:{grid:{display:false},ticks:{font:{size:isMobile?11:13},color:PR}}}}});
+new Chart(document.getElementById('c3'),{type:'bar',data:{labels:['Somzoom Sat FM 98.5','Vale do Jaguaribe FM 103.3','7 Cidades FM 93.9','Castelo FM 103.5','Meio Norte FM 97.1'],datasets:[{label:'Acurácia',data:[85.4,97.3,56.6,94.2,93.4],backgroundColor:[LA,LA,RO,RO,RO],borderRadius:5,borderSkipped:false,barThickness:isMobile?20:28}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(1)}%`}}},scales:{x:{min:0,max:112,grid:{color:CZ},ticks:{font:{size:10},color:'#888',callback:v=>v+'%'}},y:{grid:{display:false},ticks:{font:{size:isMobile?9:11},color:PR}}}}});
 </script>
 </body>
 </html>
